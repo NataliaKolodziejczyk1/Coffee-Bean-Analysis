@@ -1,0 +1,15 @@
+Kawa jest jednym z najpopularniejszych towarów rolnych i posiada miłośników na całym świecie. Zanim jednak ziarna ukryte w owocu kawowca
+będą mogły nam posłużyć do przygotowania pysznego napoju, muszą przejść przez kilka etapów. Przyjrzyjmy się temu procesowi. Na początku ziarna kawy
+muszą dojrzeć na kawowcu. Zacznijmy od pytania: kawy uprawiane w jakim kraju dostają średnio najwyższą ocenę? Gdy nasze najlepiej oceniane ziarna 
+są już zebrane, ważny jest sposób obróbki, a w tym proces palenia kawy. Można zadać kolejne intrygujące pytanie: jaki wpływ ma stopień palenia ziaren 
+na aromat, kwasowość, smak i posmak kawy? Jeżeli kawa gotowa jest już do zmielenia, zostaje nam ją tylko przygotować. Jeśli naszła cię ochota na ten cudowny
+napój, to służę pomocą. Jaka jest najbliższa kawiarnia Starbucks do podanej przez użytkownika lokalizacji? (Długości i szerokości geograficznej)
+Na powyższe pytania postaram się odpowiedzieć wraz z pomocą niezawodnego c++ 
+
+Zbiory danych:
+- merged_data_cleaned, źródło: https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
+Dane zostaną użyte do odpowiedzi na pierwsze pytanie. Dane zebrane przez Coffee Quality Institute (CQI) w styczniu 2018 roku.
+-coffee_df, źródło: https://www.kaggle.com/datasets/hanifalirsyad/coffee-scrap-coffeereview
+Dane do znalezienia odpowiedzi na drugie pytanie. Dane ze strony  www.coffeereview.com, zawierające opinie na temat kawy.
+-directory, źródło: https://www.kaggle.com/datasets/starbucks/store-locations
+Dane do odpowiedzi na ostatnie, trzecie pytanie. Dane zebrane w lutym 2017, zawierają informacje o każdym lokalu Starbucks na tamten moment.
