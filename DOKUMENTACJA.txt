@@ -1,0 +1,83 @@
+Opis techniczny
+
+Projekt napisany całkowicie w języku C++ 14, w środowisku programistycznym Visual Studio 2019. Użyte biblioteki:
+- <iostream> - operacje wejścia/wyjścia
+- <fstream> - file stream - odczyt z pliku
+- <sstream> - string stream - potrzebne do utworzenia strumienia string'ów
+- <unordered_map> }
+		  } w programie używamy zmiennych typu map i unordered_map
+- <map> 	  }
+- <iomanip> - funkcja setw() 
+- <numeric> - funckcja accumulate()
+- <algorithm> - funkcja sort()
+
+Dokumentacja implementatora
+
+Wczytywanie danych:
+Do wczytania danych z wszystkich plików sposób postępowania jest bardzo podobny - praktycznie identyczny.
+Po przygotowaniu odpowiednich zmiennych pomocniczych, otwieramy plik których chcemy przeczytać (ifstream).
+Wczytujemy pierwszą kolumnę - to nagłówek, więc go nie potrzebujemy. Następnie w pętli while wczytujemy linijka
+po linijce. Tam kolejna pętla while zajmująca się podziałem linijki na kolumny - przy pomocy strumienia stringów.
+Tutaj za każdym razem również sprawdzamy, czy pierwszy znak nie jest " - wtedy wczytujemy pole aż do zamykającego ".
+Jeśli nie, grzecznie zwracamy znak z powrotem na strumień i czytamy pole normalnie do przecinku. Pola zapisywane
+są do wektora, dzięki czemu łatwo możemy później dostać się do potrzebnej kolumnie po indeksie.
+Sposób czytania danych został specjalnie przystosowany do danych - np. jeśli wiedziałam, że pierwsza kolumna na pewno nie 
+zawiera się w " " to wczytana zostala ona bez sprawdzenia tego warunku.
+
+Analiza ocen kawy z różnych krajów:
+Sposób postępowania będzie następujący:
+W mapie countries przechowujemy nazwe kraju oraz obiekt klasy Country, który pomoże nam w uporządkowaniu danych obliczeniu średniej
+oceny. Natrafiając na nazwę kraju będziemy sprawdzać, czy już znajduje się taki kraj na naszej mapie. Jeśli nie,
+dodajemy go i tworzymy obiekt Country. Następnie w obu przypadkach do wektora ocen dopisujemy przeczytaną ocenę.
+Klasa Country ma składowe name - nazwa kraju oraz cup_points - wektor ocen. Metoda Average_rating() pozwala nam 
+policzyć średnią ocenę dla danego kraju.
+Tworzymy mapę Ratings, której klucze są średnią oceną a wartości - nazwą kraju. Taki trik sprawia, że w mapie będziemy mieli
+od razu posortowane dane pod względem średniej oceny! Musimy tylko trzymać kciuki, żeby średnia ocena nigdzie się nie powtórzyła,
+ale optymistycznie odrzucamy taką ewentualność. Zostaje nam tylko wypisać dane.
+
+Analiza wpływu stopnia palenia na paramtery kawy:
+W mapie roasts będziemy przechowywać stopnie palenia kawy i dla każdego stopnia odpowiadający mu obiekt klasy Roast zawierający wektory
+dla parametrów kawy. Natrafiając na nowy stopień palenia kawy będziemy dodawać go do mapy i tworzyć dla niego nowy obiekt Roast.
+Klasa Roast ma nam pomóc uporządkować wszystkie parametry w jednym miejscu. Zawiera składowe: roast - słowna nazwa stopnia palenia kawy,
+aroma - wektor aromatów, acid - wektor kwasowości, flavor - wektor smaków, aftertaste - wektor posmaków. Metody przydatne w analizie:
+Average() - liczy średnią dla wektora, Median() - liczy medianę dla wektora, Standard_Deviation() - liczy odchylenie standardowe.
+Każda z funkcji przyjmuje zmienną typu int, która wskazuje na to, dla jakiego parametru ziaren kawy chcey użyć danej funkcji. Dzięki temu nie
+potrzebujemy dla każdego wektora osobnej funkcji, tylko wystarczy nam jedna wspólna.   
+Dla powstałych obiektów liczymy ilość danych, średnie, mediany oraz odchylenia standardowe, które będzie nam mówić jak bardzo
+dane są rozrzucone wokół średniej. Wszystko wypisujemy w ładny sposób, w formie rameczek.
+
+Najbliższa kawiarnia:
+Tutaj już odbyło się bez klasy. Sytuacja wygląda tak: użytkownik nam podaje szerokość i długość geograficzną, a my chcemy znaleźć najbliższy lokal.
+Potrzebujemy zmienną min_dist, która będzie zawierała najmniejszą odległość między użytkownikiem a kawiarnią. Początkowo, z matematycznego punktu widzenia,
+Zmienna powinna być ustawiona na nieskończoność i wraz z wczytywaniem danych będziemy prównywać tą zmienna z aktualnie wyliczoną odległością - jeśli znaleźliśmy
+coś bliższego to super, zapisujemy to pod zmienną min_dist a poprzednia udaje się w zapomnienie. Odległości liczymy przy pomocy twierdzenia Pitagorasa. 
+Traktujemy Ziemie jako płaski układ współrzędnych (jako dużą mapę świata). No cóż, nie przeszkadza nam to, ponieważ w rzeczywistości nie potrzebujemy dokładnej
+odległości a jedynie najbliższy lokal. Dla nowej minimalnej odległości do zmiennych pomocniczych zapisujemy też dane adresowe lokalu, żeby na koniec wypisać je.
+
+Dokumentacja użytkownika:
+Drogi użytkowniku. Program jest skonstruowany w taki sposób, że poza jednym przypadkiem na prawdę nic nie musisz robić - jedynie nacisnąć przycisk start
+i obserwować z ekscytacją wyplute przez program wyniki. Możesz rozsiąść się wygodnie i wystartować program c:
+Pozwól, że przypomnę ci zadane pytania:
+- Kawy uprawiane w jakim kraju dostają średnio najwyższą ocenę?
+Zobaczysz, że na ekranie wyświetli się ranking - kraj, liczba ocenionych kaw i średnia ocena. Dane są już specjalnie posortowane malejąco po średniej ocenie.
+Czyżby kawa, którą aktualnie pijesz, znajdowała się wysoko w rankingu? Jeśli nie, może warto wypróbować coś co znajduje się na wyższej pozycji? Możesz
+sprawdzić prawdziwość danych w ten sposób (:
+- Jaki wpływ ma stopień palenia ziaren na aromat, kwasowość, smak i posmak kawy?
+Tutaj wyświetlą się piękne, równe ramczki zawierające parametry ziaren kawy dla różnych stopni palenia kawy. Można zobaczyć zależności, jakie występują między
+zmiennymi. Może jest jakiś aspekt kawy, który wyjątkowo ci się podoba, np. lubisz bardzo aromatyczne kawy? W takim razie możesz znaleźć, dla jakiego stopnia palenia
+aromat jest najwyższy. Nie lubisz kwasowości? Zobacz, czy istnieje jakaś zaleźność między tym parametrem kawy a stopniem palenia, żeby wiedzieć czego unikać.
+- Jaka jest najbliższa kawiarnia Starbucks do podanej przez użytkownika lokalizacji?
+To jest ten moment, drogi użytkowniku, który wymaga od ciebie paru kliknięć. Ale uwierz mi, będzie warto. Może jesteś gdzieś na wyjeździe i wahasz się, gdzie
+najbliżej możesz znaleźć jakąś dobrą kawiarnie? Albo nie wiesz, czy oprócz dobrze ci znanej kawiarni do której uczęszczasz nie ma jakiejś bliższej?
+Tutaj na tapetę lądują kawiarnie z sieci Starbucks. Musisz jedynie wpisać na ekran długość i szerokość geograficzną, względem której chcesz rozpocząć 
+poszukiwania. I tutaj mam tylko dwie uwagi (tak, wpisanie dwóch liczb na ekran może być dużo bardziej problematyczne, niż się wydaje, sama się na
+to nacięłam i chcę podzielić się tą tajemną widzą, żeby uchronić nic nieświadomego, bezbronnego użytkownika przed wpadnięciem w podstępne pułapki języka cpp
+oraz dziwnych zasad jakimi rządzi się współczesna geografia)  
+* Zapomnij o istnieniu przecinka. Nie ma czegoś takiego. Przecież liczba niecałkowita zawiera kropkę a nie przecinek, prawda? Zawsze tak było.
+* Jeśli ochoczo sprawdzasz swoją obecną lokalizacje na telefonie to uwaga! Współrzędnę są podane na odwrót niż w programie (przynajmniej u mnie tak jest). 
+Nie każdy jest geografem, więc podaje łatwy przepis. Pierwsze wpisz liczbę z E/W, a potem z N/S.
+* Jeśli liczba zawiera E lub N, ma być dodatnia, liczba zawierająca na końcu W/S musi zostać zapisana z minusem.
+
+
+
+
